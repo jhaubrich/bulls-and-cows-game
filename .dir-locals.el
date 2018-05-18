@@ -1,1 +1,1 @@
-((nil . ((cmake-ide-build-dir . "/home/jhaus/Dropbox/bulls-and-cows-linux/"))))
+((nil . ((cmake-ide-build-dir . "/home/jhaus/src/bulls-and-cows-linux/"))))

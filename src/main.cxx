@@ -5,18 +5,20 @@ using namespace std;
 
 void Intro();
 void PlayGame();
+int AskDifficulty();
 string AskGuess();
 void Summary();
-bool playAgain();
+bool PlayAgain();
 
 FBullsCowsGame Game;
 
 int main() {
     do {
+        Game.Reset(AskDifficulty());
         Intro();
         PlayGame();
         Summary();
-    } while (playAgain());
+    } while (PlayAgain());
 }
 
 
@@ -37,9 +39,9 @@ void Intro() {
     return;
 }
 
-bool playAgain() {
+bool PlayAgain() {
     char y_n;
-    cout << endl << "Want to play again with the same word? (y/n)" << endl;
+    cout << endl << "Want to play again? (y/n)" << endl;
     cin >> y_n;
     if (tolower(y_n) == 'y') {
         return true;
@@ -70,15 +72,24 @@ string AskGuess() {
     }
 }
 
+int AskDifficulty() {
+    int difficulty = 0;
+    do {
+        cout << "How big a word can you handle (3-7)? ";
+        cin >> difficulty;
+    } while (difficulty < 3 || difficulty > 7);
+    return difficulty;
+}
+
 void PlayGame() {
-    Game.Reset();
     std::string guess;
     FGameState sBullsCows;
 
     do {
         guess = AskGuess();
         sBullsCows = Game.GetBullsAndCows(guess);
-        cout << guess << " has " << sBullsCows.bulls << " bulls and " << sBullsCows.cows << " cows." << endl;
+        cout << guess << " has " << sBullsCows.bulls << " bulls and "
+                                 << sBullsCows.cows  << " cows." << endl;
     } while (Game.GetCurrentTry() <= Game.GetMaxTries() && !Game.isWinner());
 }
 

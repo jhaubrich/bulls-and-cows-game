@@ -19,22 +19,22 @@ enum class guessError {
 class FBullsCowsGame
 {
  public:
-    FBullsCowsGame() {Reset();}
+    FBullsCowsGame() {Reset(3);}
 
-    void Reset();
+    void Reset(int);
     bool isIsogram(FString);
     bool isAlphas(FString);
     guessError isValid(FString);
     bool isWinner();
 
-    int GetMaxTries() const {return maxtries;}
+    int GetMaxTries();
     int GetCurrentTry() const {return currenttry;}
     int GetSecretWordLength() const {return secretWord.length();}
+    FString GenerateSecretWord(int);
 
     FGameState GetBullsAndCows(FString);
 
  private:
-    int maxtries;
     int currenttry;
     FString secretWord = "planet";
     FGameState sBullsCows;
@@ -42,11 +42,24 @@ class FBullsCowsGame
 };
 
 
-void FBullsCowsGame::Reset() {
-    maxtries = 5;
+void FBullsCowsGame::Reset(int difficulty) {
     currenttry = 1;
     bWin = false;
+    secretWord = GenerateSecretWord(difficulty);
 }
+
+int FBullsCowsGame::GetMaxTries() {
+    std::map<int,int> wordLenToMaxTries { {3,5}, {4,10}, {5,15}, {6,20} };
+    return wordLenToMaxTries[secretWord.length()];
+}
+
+FString FBullsCowsGame::GenerateSecretWord(int difficulty) {
+    std::map<int, FString> secretWords {
+        {3, "ply"}, {4, "plan"}, {5, "plane"}, {6, "planet"}, {7, "planets"}
+    };
+    return secretWords[difficulty];
+}
+
 
 guessError FBullsCowsGame::isValid(FString guess) {
     // validate guess -- wordlength? Isogram? valid_chars?
