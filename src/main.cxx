@@ -34,32 +34,27 @@ bool playAgain() {
     } else {
         return false;
     }
-
 }
 
 string AskGuess() {
     string guess;
 
-    while (true) { // until guess is validate
+    map<guessError, string> errorMessages {
+        {guessError::OK, ""},
+        {guessError::not_alphas, "Use alphabetic characters when forming your word."},
+        {guessError::not_isogram, "Make sure you aren't repeating any characters."},
+        {guessError::wrong_length, "Your guesses should be " + to_string(Game.GetSecretWordLength()) + " characters long."}
+    };
+
+    while (true) {
         cout << endl << "#" << Game.GetCurrentTry() << ": ";
         cin >> guess;
-        switch (Game.isValid(guess)) {
-        case guessError::OK: {
-            return guess;
-        }
-        case guessError::not_alphas: {
-            cout << "Use alphabetic characters when forming your word." << endl;
-            break;
-        }
-        case guessError::not_isogram: {
-            cout << "Make sure you aren't repeating any characters." << endl;
-            break;
-        }
-        case guessError::wrong_length: {
-            cout << "Your guesses should be " << Game.GetSecretWordLength() << " characters long." << endl;
-            break;
-        }}
 
+        if (Game.isValid(guess) == guessError::OK) {
+            return guess;
+        } else {
+            cout << errorMessages[Game.isValid(guess)] << endl;
+        }
     }
 }
 
