@@ -32,7 +32,7 @@ void Intro() {
     std::cout << "  ----------------------------------------"          << std::endl;
     std::cout << "         \\   ^__^ "                                 << std::endl;
     std::cout << "          \\  (oo)\\_______"                         << std::endl;
-    std::cout << "             (__)\\       )\\ / \\"                  << std::endl;
+    std::cout << "             (__)\\       )\\/\\"                    << std::endl;
     std::cout << "                 ||----w |"                          << std::endl;
     std::cout << "                 ||     ||"                          << std::endl;
     std::cout << std::endl;
@@ -95,8 +95,26 @@ void PlayGame() {
 
 void Summary() {
     if (Game.isWinner()) {
-        cout << endl << "YOU WIN!!!" << endl;
+        cout <<"  ______________ "                     << endl;
+        cout <<"/                \\"                     << endl;
+        cout <<"|   YOU WIN!!!   |"                    << endl;
+        cout <<"\\                /"                     << endl;
+        cout <<"  -------------- "                     << endl;
+        cout <<"        \\  \\^__^/"                   << endl;
+        cout <<"         \\  (00)\\_______"            << endl;
+        cout <<"            (__)\\       )\\/\\"       << endl;
+        cout <<"                ||----, |"             << endl;
+        cout <<"                ||     ||"             << endl;
+
     } else {
-        cout << "Better luck next time." << endl;
+        cout <<" ________________________"             << endl;
+        cout <<"< Better luck next time. >"            << endl;
+        cout <<" ------------------------"             << endl;
+        cout <<"        \\   ^__^"                     << endl;
+        cout <<"         \\  (xx)\\_______"            << endl;
+        cout <<"            (__)\\       )\\/\\"       << endl;
+        cout <<"             U  ||----w |"             << endl;
+        cout <<"                ||     ||"             << endl;
+
     }
 }
