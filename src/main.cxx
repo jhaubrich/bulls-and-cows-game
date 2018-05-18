@@ -19,10 +19,22 @@ int main() {
     } while (playAgain());
 }
 
+
+
 void Intro() {
-    cout << "Welcome to Bulls and Cows!" << endl;
-    cout << "I'm thinking of a " << Game.GetSecretWordLength() << " letter isogram.";
-    cout <<" You have " << Game.GetMaxTries() << " attempts to guess it. Goodluck!" << endl;
+    std::cout << "  ________________________________________"          << std::endl;
+    std::cout << "/ Welcome to Bulls and Cows, a fun word    \\"       << std::endl;
+    std::cout << "| game! Can you guess the ";
+    std::cout << Game.GetSecretWordLength() << " letter isogram |"     << std::endl;
+    std::cout << "\\ I'm thinking of?                         /"       << std::endl;
+    std::cout << "  ----------------------------------------"          << std::endl;
+    std::cout << "         \\   ^__^ "                                 << std::endl;
+    std::cout << "          \\  (oo)\\_______"                         << std::endl;
+    std::cout << "             (__)\\       )\\ / \\"                  << std::endl;
+    std::cout << "                 ||----w |"                          << std::endl;
+    std::cout << "                 ||     ||"                          << std::endl;
+    std::cout << std::endl;
+    return;
 }
 
 bool playAgain() {
@@ -68,7 +80,6 @@ void PlayGame() {
         sBullsCows = Game.GetBullsAndCows(guess);
         cout << guess << " has " << sBullsCows.bulls << " bulls and " << sBullsCows.cows << " cows." << endl;
     } while (Game.GetCurrentTry() <= Game.GetMaxTries() && !Game.isWinner());
-
 }
 
 void Summary() {
